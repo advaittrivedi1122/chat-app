@@ -16,12 +16,14 @@ const wss = new WebSocketServer({server : server})
 let messages: any = []
 
 wss.on("connection",(ws)=>{
-  ws.send("Connected...!!")
+  console.log("New Connection established")
   ws.on("message",(data)=>{
-    let message = data.toString()
-    message = JSON.parse(message).message
-    message = message !== "" ? message : "No message"
-    messages.push(message)
+    let req = data.toString()
+    let message = JSON.parse(req).message
+    let id = JSON.parse(req).id
+    if (message) {
+      messages.push({id, message})
+    }
     ws.send(JSON.stringify(messages))
   })
 })
