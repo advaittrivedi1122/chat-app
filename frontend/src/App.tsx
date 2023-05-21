@@ -16,15 +16,22 @@ function App() {
     return
   }
 
+  const sendMessage = async ()=>{
+    console.log(message)
+    const data = {id, message}
+    console.log(messages)
+    ws.send(JSON.stringify(data))
+    setMessages([...messages, message])
+    console.log(messages)
+    return
+  } 
   useEffect(()=>{
     ws.onmessage = (e) => {
       const parsedData: any = JSON.parse(e.data)
-      setMessages([...messages, parsedData.message])
-      setMessages([{id:1,message:"hello"}])
-      console.log(messages)
+      setMessages([...messages, parsedData?.message])
+      console.log(parsedData)
     }
     fetchMessages()
-    console.log("hello")
   }, [messages])
 
   return (
@@ -33,7 +40,7 @@ function App() {
       <div className="chat">
         <div className="messages">
           {
-            messages.map((messageItem)=>{
+            messages.map((messageItem:any)=>{
               <div className="message">
                 <h3>{messageItem}</h3>
               </div>
@@ -42,6 +49,8 @@ function App() {
         </div>
         <div className="send">
           {/* Todo: Add send message bar and send input message to backend webSocket - (ws.send) */}
+          <input type="text" onChange={(e)=>setMessage(e.target.value)}/>
+          <button type="submit" onClick={sendMessage}>Send</button>
         </div>
       </div>
     </>

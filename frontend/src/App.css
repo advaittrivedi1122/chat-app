@@ -9,3 +9,14 @@
   border-radius: 1%;
   height: 89vh;
 }
+
+.messages {
+  border: red 1px;
+}
+
+
+.send {
+  height: 89vh;
+  display: flex;
+  align-items: flex-end;
+}
