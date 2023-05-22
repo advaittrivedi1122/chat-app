@@ -8,15 +8,18 @@
   border: 1px solid rgb(25, 179, 115);
   border-radius: 1%;
   height: 89vh;
+  display: flex;
 }
 
-.messages {
+.message {
   border: red 1px;
+  height: 1vh;
+  padding: 1vh;
 }
 
 
 .send {
-  height: 89vh;
+  height: 5vh;
   display: flex;
-  align-items: flex-end;
+  align-self: flex-end;
 }
