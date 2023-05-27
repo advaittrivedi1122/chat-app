@@ -2,15 +2,18 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import useWebSocket from 'react-use-websocket'
+import {Chat} from "./Chat"
 
 function App() {
   const [id, setID] = useState(0)
   const [message, setMessage] =useState("")
   const [messages, setMessages]: any = useState([])
   const url: any = import.meta.env.VITE_CHAT_URL
-  // const ws = new WebSocket(url)
   const { sendMessage: sendNewMessage } = useWebSocket(url, {
     // share: true,
+    onOpen: (e)=> {
+      console.log(`Client connected`,e)
+    },
     onMessage: (e)=> {
       const parsedData: any = JSON.parse(e.data)
       setMessages(parsedData)
@@ -35,23 +38,8 @@ function App() {
 
   return (
     <>
-      <h1 align="center">Chat App</h1>
-      <div className="chat">
-        <div className="messages">
-          {
-            messages.map((messageItem:any)=>{
-              return <div className="message">
-                <h3>{messageItem.message}</h3>
-              </div>
-            })
-          }
-        </div>
-        <div className="send">
-          {/* Todo: Add send message bar and send input message to backend webSocket - (ws.send) */}
-          <input type="text" onChange={(e)=>setMessage(e.target.value)}/>
-          <button type="submit" onClick={sendMessage}>Send</button>
-        </div>
-      </div>
+      <h1 style={{textAlign:"center"}}>Chat App</h1>
+      <Chat sendMessage={sendMessage} setMessage={setMessage} setMessages={setMessages} messages={messages}/>
     </>
   )
 }

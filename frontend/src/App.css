@@ -8,18 +8,37 @@
   border: 1px solid rgb(25, 179, 115);
   border-radius: 1%;
   height: 89vh;
-  display: flex;
+  /* display: flex; */
+  /* width: 99vw; */
+}
+
+.messages {
+  height: 80vh;
+  width: 97vw;
+  margin: 0.5rem;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .message {
-  border: red 1px;
-  height: 1vh;
+  /* border: 1px solid red; */
+  /* height: 1vh; */
   padding: 1vh;
 }
 
 
 .send {
-  height: 5vh;
+  height: 3vh;
   display: flex;
   align-self: flex-end;
+  margin: 1rem;
+  /* display: block; */
+}
+
+button {
+  margin: 0 1vw;
+}
+
+::-webkit-scrollbar {
+  width: 0.1em;
 }
