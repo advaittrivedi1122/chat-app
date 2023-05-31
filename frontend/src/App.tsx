@@ -15,7 +15,7 @@ function App() {
       console.log(`Client connected`,e)
     },
     onMessage: (e)=> {
-      const parsedData: any = JSON.parse(e.data)
+      let parsedData = JSON.parse(e.data)
       setMessages(parsedData)
       console.log(`parsed`,parsedData)
     }
@@ -23,17 +23,21 @@ function App() {
 
   const sendMessage = async ()=>{
     console.log(message)
-    const data = {id, message}
+    const data = {
+      "id": id, 
+      "method": "send-message",
+      "message": message
+    }
     console.log(messages)
     sendNewMessage(JSON.stringify(data))
-    setMessages([...messages, message])
+    // setMessages([...messages, message])
     console.log(messages)
     return
   } 
 
   useEffect(()=>{
     console.log("re-rendered")
-    setMessages([...messages, message])
+    // setMessages([...messages, message])
   },[message])
 
   return (

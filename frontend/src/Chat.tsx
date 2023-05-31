@@ -6,9 +6,9 @@ export const Chat = (props: any) => {
         <div className="chat">
             <div className="messages">
                 {
-                    props.messages.map((messageItem: any) => {
+                    props.messages.map((message: any) => {
                         return <div className="message">
-                            <h3>{messageItem.message}</h3>
+                            <h3>{message}</h3>
                         </div>
                     })
                 }
