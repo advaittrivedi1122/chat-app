@@ -5,7 +5,8 @@ import useWebSocket from 'react-use-websocket'
 import {Chat} from "./Chat"
 
 function App() {
-  const [id, setID] = useState(0)
+  const [id, setID] = useState("64720b35092c7cb0957ff1d9")
+  const [chatUserId, setChatUserId] = useState("64720b35092c7cb0957ff1d9")
   const [message, setMessage] =useState("")
   const [messages, setMessages]: any = useState([])
   const url: any = import.meta.env.VITE_CHAT_URL
@@ -21,17 +22,25 @@ function App() {
     }
   })
 
+  const getChats = async ()=>{
+    console.log(message)
+  }
+
   const sendMessage = async ()=>{
     console.log(message)
     const data = {
-      "id": id, 
       "method": "send-message",
-      "message": message
+      "params": {
+        "from": id, 
+        "to": chatUserId,
+        "message": message
+      }
     }
     console.log(messages)
     sendNewMessage(JSON.stringify(data))
     // setMessages([...messages, message])
     console.log(messages)
+    setMessage("")
     return
   } 
 
@@ -43,7 +52,7 @@ function App() {
   return (
     <>
       <h1 style={{textAlign:"center"}}>Chat App</h1>
-      <Chat sendMessage={sendMessage} setMessage={setMessage} setMessages={setMessages} messages={messages}/>
+      <Chat sendMessage={sendMessage} setMessage={setMessage} setMessages={setMessages} messages={messages} userId={id}/>
     </>
   )
 }

@@ -1,5 +1,6 @@
-// require("dotenv").config();
 import mongoose from "mongoose";
+
+
 const url: string = process.env.MONGODB_URI || "";
 
 mongoose.connect(url)

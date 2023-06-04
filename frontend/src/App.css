@@ -14,6 +14,7 @@
 
 .messages {
   height: 80vh;
+  
   width: 97vw;
   margin: 0.5rem;
   overflow: scroll;
@@ -33,6 +34,9 @@
   align-self: flex-end;
   margin: 1rem;
   /* display: block; */
+  position: relative;
+  bottom: 0;
+  z-index: 1;
 }
 
 button {
